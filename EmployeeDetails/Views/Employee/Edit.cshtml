@@ -1,0 +1,139 @@
+﻿@model EmployeeDetails.Models.Employee
+ 
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit Employee</h2>
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="row mt-1">
+        <div class="col-md-6">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" type="text" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+ <div class="col-md-6">
+    <label>Languages</label>
+    <div>
+        <label><input type="checkbox" name="Language" value="1" /> Marathi</label>
+    </div>
+    <div>
+        <label><input type="checkbox" name="Language" value="2"  /> Hindi</label>
+    </div>
+    <div>
+        <label><input type="checkbox" name="Language" value="4"  /> English</label>
+    </div>
+    <!-- Add similar checkboxes for other languages -->
+    <span asp-validation-for="Language" class="text-danger"></span>
+</div>
+
+
+
+
+
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-md-6">
+            <label asp-for="gender">Gender</label>
+            <div class="radio">
+                <label>
+                    <input asp-for="gender" type="radio" value="Male" /> Male
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input asp-for="gender" type="radio" value="Female" /> Female
+                </label>
+            </div>
+            <span asp-validation-for="gender" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="MobileNumber">Mobile Number</label>
+            <input asp-for="MobileNumber" type="text" class="form-control" />
+            <span asp-validation-for="MobileNumber" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-md-6">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" type="email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="MonthlySalary">Monthly Salary</label>
+            <input asp-for="MonthlySalary" type="text" class="form-control " id="monthly-salary" onchange="calculateAnnualSalary()" />
+            <span asp-validation-for="MonthlySalary" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-md-6">
+            <label asp-for="AnnualSalary">Annual Salary</label>
+            <input asp-for="AnnualSalary" type="text" class="form-control " id="annual-salary" readonly />
+            <span asp-validation-for="AnnualSalary" class="text-danger"></span>
+        </div>
+
+            <div class="col-md-6">
+                <label asp-for="ResumePath">Resume</label>
+             @*    @if (!string.IsNullOrEmpty(Model.ResumePath))
+                {
+                    <p>Selected File: @System.IO.Path.GetFileName(Model.ResumePath)</p>
+                }
+                <input asp-for="ResumePath" type="hidden" class="form-control" /> *@
+                <input type="file" asp-for="ResumePath" class="form-control"  />
+                <span asp-validation-for="ResumePath" class="text-danger"></span>
+            </div>
+     
+
+
+
+
+        </div>
+
+
+
+    <div class="row mt-1">
+        <div class="col-md-6">
+            <label asp-for="City_id">City</label>
+            <select asp-for="City_id" asp-items="@(new SelectList(ViewBag.CityList, "Id", "City_Name"))" class="form-control">
+                <option value="">Select City</option>
+            </select>
+            <span asp-validation-for="City_id" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-save"></i>&nbsp;Save
+                </button>
+                <a asp-action="Index" class="btn btn-primary"><i class="fa fa-undo"></i>Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+<script>
+    function calculateAnnualSalary() {
+        var monthlySalary = parseFloat(document.getElementById('monthly-salary').value);
+        if (!isNaN(monthlySalary)) {
+
+            var annualSalary = monthlySalary * 12;
+            document.getElementById('annual-salary').value = annualSalary.toFixed(2);
+        } 
+    }
+</script>

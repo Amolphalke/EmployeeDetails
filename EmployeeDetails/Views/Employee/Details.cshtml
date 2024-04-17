@@ -1,0 +1,77 @@
+﻿@model EmployeeDetails.Models.Employee
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+<hr/>
+<div class="card-body">
+<div class="row border-1">
+    <div class="col-2 text-dark">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="col-4">
+        @Html.DisplayFor(model=> model.Name)
+    </div>
+        <div class="col-2 text-dark">
+        @Html.DisplayNameFor(model => model.Language)
+    </div>
+    <div class="col-4">
+        @Html.DisplayFor(model=> model.Language)
+    </div>
+</div>
+<div class="row border-1">
+        <div class="col-2 text-dark">
+        @Html.DisplayNameFor(model => model.gender)
+    </div>
+    <div class="col-4">
+        @Html.DisplayFor(model=> model.gender)
+    </div>
+        <div class="col-2 text-dark">
+        @Html.DisplayNameFor(model => model.MobileNumber)
+    </div>
+    <div class="col-4">
+        @Html.DisplayFor(model=> model.MobileNumber)
+    </div>
+</div>
+<div class="row border-1">
+        <div class="col-2 text-dark">
+        @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="col-4">
+        @Html.DisplayFor(model=> model.Email)
+    </div>
+        <div class="col-2 text-dark">
+        @Html.DisplayNameFor(model => model.MonthlySalary)
+    </div>
+    <div class="col-4">
+        @Html.DisplayFor(model=> model.MonthlySalary)
+    </div>
+</div>
+<div class="row border-1">
+        <div class="col-2 text-dark">
+        @Html.DisplayNameFor(model => model.AnnualSalary)
+    </div>
+    <div class="col-4">
+        @Html.DisplayFor(model=> model.AnnualSalary)
+    </div>
+        <div class="col-2 text-dark">
+        @Html.DisplayNameFor(model => model.ResumePath)
+    </div>
+    <div class="col-4">
+        @Html.DisplayFor(model=> model.ResumePath)
+    </div>
+        <div class="col-2 text-dark">
+            @Html.DisplayNameFor(modelitem => modelitem.City.City_Name)
+        </div>
+        <div class="col-4">
+            @Html.DisplayFor(modelitem=> modelitem.City.City_Name)
+        </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-2"><a asp-action="Index" class="btn btn-info">Back</a>
+</div>
+    </div>
+</div>
